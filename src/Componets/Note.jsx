@@ -1,6 +1,7 @@
 
 
 import React from 'react'
+import { motion,DragControls } from 'framer-motion'
 
 const Note = ({id,text,editHandler,deleteHandler}) => {
 
@@ -10,7 +11,7 @@ const Note = ({id,text,editHandler,deleteHandler}) => {
     // }
 
   return (
-    <div className='note'>
+    <div  className='note'>
         <div className='note-body'>{text}</div>
         <div className="note_footer" style={{justifyContent:"flex-end"}}>
         <button className='note_save'onClick={()=>(deleteHandler(id))} >Delete</button>

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import CreateNote from './CreateNote'
 import './notes.css'
 import {v4 as uuid} from 'uuid'
+import { toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import Note from './Note'
 
 const Notes = () => {
@@ -13,6 +15,7 @@ const Notes = () => {
         setEditToggle(id)
         setInputText(text)
     }
+     
     const saveHandler = () => {
         if(editToggle) {
             setNotes(notes.map((note) => (
@@ -29,12 +32,15 @@ const Notes = () => {
             ])
         }
         
+        toast("Note Created");
+        
         setInputText("")
         setEditToggle(null)
     }
     const deleteHandler = (id) => {
         const newNotes = notes.filter(n => n.id !== id)
         setNotes(newNotes)
+        toast("Note Deleted");
     }
 
     useEffect(() => {
@@ -49,6 +55,7 @@ const Notes = () => {
   }, [notes]);
   return (
     <div className='notes'>
+
         {
             notes.map((note) => (
                 editToggle === note.id ?
